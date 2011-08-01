@@ -1,0 +1,60 @@
+">==== INIT ====<"
+cd ~
+
+">Window title
+set titlestring=Firefox
+
+">Editor, C-i invokes it in text fields
+set editor=emacsclient
+":se editor="%Pgm%/DEV/EDITOR/GVim/App/vim/vim71/gvim.exe -f"
+
+">Command line and search patterns history
+set history=10000
+
+">Show pattern matches as you type
+set incsearch
+
+">Hilight previous search pattern matches
+set hlsearch
+
+">Override ignorecase if pattern has uppercase chars
+set smartcase
+
+">Focus content after a page has loaded
+set focuscontent
+
+">Show destination links in 1=status line, 2=command line
+set showstatuslinks=1
+
+">Show completions and use AwesomeBar (+search plugins)
+set complete=sl
+"set wildoptions=auto
+set wildmode=list:longest,full
+
+">Ex commands output in a new tab by default (prefs, addons...)
+set newtab=all
+
+">Don't beep or blink at me!
+set visualbell
+highlight Bell display:none
+
+">set default search to google
+set defsearch=g
+
+">Instant search as you type
+set incsearch
+
+"set noinsertmode
+
+">Try to stay in normal state after loading a webpage
+set focuscontent
+
+">The information will be prompted to minibuffer
+set verbose=1
+
+">---- About:Config ----<"
+"set! dom.disable_window_move_resize=true
+set! browser.fullscreen.autohide=false
+
+">--- PassThrough ----<"
+"autocmd LocationChange .* js modes.passAllKeys = /.*(mail\.google\.com|www\.google\.com\/reader).*/.test(buffer.URL)

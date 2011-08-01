@@ -1,0 +1,316 @@
+"" ==================================================
+"" Vimperator Settings of Vergil.Gefenbauer
+"" ==================================================
+""
+"" -------------------------------------------------------
+""
+"" ==================================================
+"" 设置环境变量
+"" ==================================================
+""
+"" Maine_Coon
+""
+let g:maine_coon_default= "acmu"
+""
+"" Nextlink
+""
+let g:nextlink_followlink = "false"
+let g:nextlink_nositeinfo_act= "e"
+let g:nextlink_prevmap= "[n"
+let g:nextlink_nextmap= "]n"
+""
+"" HintcharMod
+""
+let g:asdfghjkl_hintchars = "vcxzdsaewq"
+""
+"" Hint_yank_Copy
+""
+let g:hints_copy_maps = "x X p P"
+let g:caret_hint_key = 'q'
+let g:caret_hint_tail_key = 'Q'
+let g:caret_hint_select_tail_key = 'A'
+let g:caret_hint_swap_key = 'a'
+let g:ex_ime_mode = "inactive"
+let g:textarea_ime_mode = "inactive"
+""
+"" Twittperator
+""
+"let g:twittperator_proxy_host = '127.0.0.1'
+"let g:twittperator_proxy_port = 8000
+let g:twittperator_use_chirp = 1
+let g:twittperator_history_limit = 50
+let g:twittperator_screen_name = "1wingedangel"
+let g:twlist_popup_time = 5
+""
+"" statstat (在状态栏上显示参数的字数，Twittperator发推辅助用)
+""
+let g:statstat_expression = "let ([,,,as]=commands.parseCommand(commandline.command)) as.length"
+let g:statstat_autorun = "true"
+let g:statstat_interval = "400"
+""
+"" ------------------------------------------------------
+""
+"" =================================================
+"" 脚本扩展
+"" =================================================
+""
+"" Copy.js的各种模板
+""
+javascript <<EOM
+liberator.globalVariables.copy_templates = [
+  { label: 'titleAndURL',    value: '%TITLE%\n%URL%' },
+  { label: 'title',          value: '%TITLE%', map: ',y' },
+  { label: 'anchor',         value: '<a href="%URL%">%TITLE%</a>' },
+  { label: 'selanchor',      value: '<a href="%URL%" title="%TITLE%">%SEL%</a>' },
+  { label: 'htmlblockquote', value: '<blockquote cite="%URL%" title="%TITLE%">%HTMLSEL%</blockquote>' },
+  { label: 'ASIN',   value: 'copy ASIN code from Amazon', custom: function(){return content.document.getElementById('ASIN').value;} },];
+EOM
+""
+"" mousegesture.js (在Linux下无法使用，于是注释)
+""
+"javascript <<EOM
+"liberator.globalVariables.mousegesture_showmsg = true;  // default is true
+"//liberator.globalVariables.mousegesture_rocker = true;  // default is false
+"//liberator.globalVariables.mousegesture_wheel = true;  // default is false
+"//liberator.globalVariables.mousegesture_list = [
+"  //['UDLR', 'Description', '#id or function or :vimp command or vimp_key', noremap flag]
+"//  ['L'  , 'Back', '#Browser:Back'],
+"//  ['R'  , 'Forward', '#Browser:Forward'],
+"//  ['RLR', 'Close Tab Or Window', '#cmd_close'],
+"//  ['LD' , 'Stop Loading Page', '#Browser:Stop'],
+"//  ['LR' , 'Undo Close Tab', '#History:UndoCloseTab'],
+"//  ['UL' , 'Select Previous Tab', 'gT', true],
+"//  ['UR' , 'Select Next Tab', 'gt', true],
+"//  ['LU' , 'Scroll To Top', function() goDoCommand('cmd_scrollTop')],
+"//  ['LD' , 'Scroll To Bottom', function() goDoCommand('cmd_scrollBottom')],
+"//  ['UDR', 'Add Bookmark', ':dialog addbookmark'],
+"//  ['L>R', 'Forward', '#Browser:Forward'],
+"//  ['L<R', 'Back', '#Browser:Back'],
+"//  ['W-' , 'Select Previous Tab', function() gBrowser.tabContainer.advanceSelectedTab(-1, true) ],
+"//  ['W+' , 'Select Next Tab', function() gBrowser.tabContainer.advanceSelectedTab(+1, true) ],];
+"['L' , 'Select Previous Tab', 'q'],
+"['R' , 'Select Next Tab', 'w'],
+"['DL' , 'Close Tab' , 'd'],
+"['DR' , 'Undo Tab' , 'u'],
+"['LU' , 'Scroll To Top', function() goDoCommand('cmd_scrollTop')],
+"['LD' , 'Scroll To Bottom', function() goDoCommand('cmd_scrollBottom')],
+"['L<R', 'Back', '#Browser:Back'],
+"['L>R', 'Forward', '#Browser:Forward'],
+"['DURDL' , 'Show Download Box' , ':dia downloads'],
+"['DURDLR' , 'Show Downthemall' , ':downthemall'],
+"];
+"EOM
+""
+""MigrateStatusbar(在状态栏显示一些工具栏上的图标)
+""
+javascript <<EOF
+    liberator.globalVariables.migrate_elements = [
+        {
+            // favicon of awesome bar
+            id:    'page-proxy-stack',
+            dest:  'liberator-statusline',
+            after: false,
+        },
+        {
+            // icon that show the existence of RSS and Atom on current page
+            id:    'feed-button',
+            dest:  'security-button',
+            after: true,
+        },
+        {
+        //Readitlater add-button
+            id:    'RIL_urlbar_add',
+            dest:  'security-button',
+            after: true,
+        },
+        {
+        //Readitlater cancel-button
+            id:    'RIL_urlbar_mark',
+            dest:  'security-button',
+            after: true,
+        },
+    {
+        //Readitlater watch-button
+            id:    'RIL_toolbar_button',
+            dest:  'security-button',
+            after: true,
+        },
+    {
+        //Readitlater hatenaB
+            id:    'hatena-addbookmark-button',
+            dest:  'security-button',
+            after: true,
+    },
+    {
+        //Readitlater hatenaD
+            id:    'hatena-refer-button',
+            dest:  'security-button',
+            after: true,
+        },
+        ];
+EOF
+""
+"" -------------------------------------------------------
+""
+"" ==================================================
+"" 读取脚本扩展
+"" ==================================================
+""
+"" 加载plugins目录下的脚本
+""
+loadplugins
+""
+"" 加载 HatenaBookmark 的脚本
+""
+javascript if (typeof hBookmark != 'undefined') liberator.loadScript('chrome://hatenabookmark/content/vimperator/plugin/hatenabookmark.js', {__proto__: this});
+""
+"" -------------------------------------------------------
+""
+"" ==================================================
+"" 各种设置
+"" ==================================================
+""
+colorscheme abyss
+set titlestring="Vimperator by Firefox"
+set verbose=9
+set wildmode=list:full
+set maxitems=10
+set visualbell
+set focuscontent
+set editor="gvim -f"
+set go=
+set nextpattern=\s*下一页|下一张|下一篇|下页|后页\s*,^\bnext\b,\\bnext\\b,^>$,^(>>|»)$,^(>|»),(>|»)$,\\bmore\\b
+set previouspattern=\s*上一页|上一张|上一篇|上页|前页\s*,^\bprev|previous\b,\\bprev|previous\\b,^<$,^(<<|«)$,^(<|«),(<|«)$
+set! ui.key.generalAccessKey=0
+""
+"" --------------------------------------------------
+""
+"" ==================================================
+"" 键盘映射
+"" ==================================================
+""
+"" 操作控制(由于Firefox4的Panorama功能，放弃Vimp原有的切换标签改用Firefox自带快捷键)
+""
+" 切换至上一个标签
+map w <C-tab>
+" 切换至下一个标签
+map q <C-S-tab>
+" 往上移动一个标签
+noremap Q :tabmove! +1<CR>
+" 往下移动一个标签
+noremap W :tabmove! -1<CR>
+" 把翻页移至as
+map a k
+map s j
+" xz xc 回格键对该标签历史回溯
+map xz :ba<space><tab>
+map xc :fo<space><tab>
+noremap <backspace> H
+" 翻页单手版
+noremap eq [[
+noremap ew ]]
+" 关闭标签 （Panorama兼容模式）
+noremap d <C-w>
+""
+""各种基本命令的扩展化
+""
+" 以e起始的取消该标签的所有键盘映射忽略（feedsomekey）
+map et :tabopen<space>
+map eo :open<space>
+map ed :bd<CR>
+map er :reload<CR>
+map eR :reload!<CR>
+map ef ;o
+map eF ;t
+map eu :u<CR>
+" Tabopen增强版
+map tt :tabopen<space>
+map tg :tabopen<space>google<space>
+map tw :tabopen<space>wiki<space>
+map tf :tabopen<space>ff<space>
+map tj :tabopen<space>js<space>
+" 把剪贴板的URL贴至新标签上
+noremap pp P
+" 把选中的URL直接跳转至新标签
+noremap po YP
+noremap pg Y:tabopen<space>google<space><C-v><C-v><CR>
+noremap pw Y:tabopen<space>wiki<space><C-v><C-v><CR>
+" 直接进入拷URL的HintMode
+map <C-c> ;y
+" 取消载入
+map <C-d> :stop<CR>
+" 切换页面编码
+noremap ,es :set encoding=Shift_JIS<CR>
+noremap ,ec :set encoding=EUC-JP<CR>
+noremap ,eu :set encoding=UTF-8<CR>
+noremap ,eg :set encodeing=GB2312<CR>
+""
+"" 界面控制相关Keymaps
+""
+" 显示地址栏菜单栏搜索栏
+map <C-Up> :set go=mT<CR>
+" 隐藏地址栏菜单栏搜索栏
+map <C-Down> :set go=<CR>
+" 呼出侧边栏列表
+map S :sidebar<space><S-tab>
+" 呼出菜单栏列表
+map V :emenu<space>
+" 呼出撤销列表
+map U :u<space><tab><S-tab>
+""
+"" -------------------------------------------------------
+""
+"" ==================================================
+"" 自动运行命令
+"" ==================================================
+""
+"" 开机自启动脚本简化
+""
+command! -nargs=+ lazy autocmd VimperatorEnter .* <args>
+""
+"" 各种自动启动命令
+""
+" 在地址栏补全中加入Hatena Bookmark支持
+lazy set complete+=H
+" 调整output的高度为浏览器的一半
+lazy js document.getElementById("liberator-multiline-output").parentNode.maxHeight=content.innerHeight/2 + "px"
+""
+"" feedSomeKeys_3.js的自启动命令
+""
+" Gmail
+lazy fmaps -u='^https?://mail\.google\.com/(mail|a)/' c / j k n m,p o u x s r a # l U I [ ] N z ? gi gs gt gd ga gc gb gk gl *a *n *r *u *s *t y e  
+" Google Reader
+command! -nargs=+ lazyfmapsgooglereader lazy fmaps -urls='www\.google\.com/reader' -events=vkeypress <args>
+lazyfmapsgooglereader j k J K <Space> <S-Space> n m,p N P X O s D v gh ga gs gS gu gt gT gd gf gF gc ge gp r u 1 2 / a t T A o f
+" Tumblr (use: tombloo.xpi, dashboard+tombloo.user.js, reblogcommand.user.js, playontumblr.user.js)
+lazy fmaps -u='^http://[^\./]*\.tumblr\.com/' i,tj e,tk n,h
+" favotter (use: twitfavcommandminibuffer.user.js)
+lazy fmaps -u='^http://favotter\.net/' e,F
+" Twittseven
+lazy fmaps -u='twitter\.com/' -events=vkeydown tt,R r f h,j l,k v,l A <Del>,d R,a S,f c
+" Remember the milk
+lazy fmaps -u 'rememberthemilk\.com' -event=keypress j k tt,t y,c c,y pu,1 pi,2 po,3 pp,4 <Del> x,i h H,<C-S-Left> L,<C-S-Right>
+""
+
+""
+
+""
+" qmarks 快速打开
+qmark t https://twitter.com
+qmark m https://mail.google.com
+qmark r https://www.google.com/reader
+qmark k http://wingofikaros.heliohost.org/kwestion
+qmark d http://127.0.0.1:4080
+qmark v http://coderepos.org/share/browser/lang/javascript/vimperator-plugins/trunk
+qmark u http://www.tumblr.com/dashboard
+qmark g http://www.rememberthemilk.com
+" buffers 快速打开
+noremap bm :buffer gmail<CR>
+noremap br :buffer google reader<CR>
+noremap bt :buffer twitter<CR>
+noremap bd :buffer mldonkey<CR>
+noremap bg :buffer remember the milk<CR>
+noremap bh :buffer Hootsuite<CR>
+noremap ba :buffer about:blank<CR>
+" 快速调用书签
+noremap bn :bmarks<space>

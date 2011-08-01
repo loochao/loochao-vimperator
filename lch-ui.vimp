@@ -1,0 +1,44 @@
+">==== UI ====<"
+"set laststatus=2
+
+">Show the tab bar only if more then one tab is open
+noremap <f11>		:set gui=tabs<CR>
+noremap <C-f11>	   	:set gui=none<CR>
+noremap <S-f11>		:set gui=all<CR>
+
+">No toolbar and scrollbars by default
+"set go-=brT
+
+">Ctrl+Up and Down to set gui.
+noremap <C-Up> :set guioptions=mTB<CR>
+noremap <C-Down> :set guioptions=<CR>
+
+"colorscheme zenburn
+
+">Available background color: #3E4247(Dark grey) #8B0000(Dark Red) F5DEB3(Wheat) #ACBC90(Light dark green)
+">Available font options: font-family
+hi CmdLine           	color: White; background: black; font-weight: normal; font-size: 16pt; padding: 1px;
+hi CmdOutput           	color: White; background: #8B0000; font-weight: normal; font-size: 16pt;
+hi Normal               color: white; background: black; font-weight: normal; font-size: 16pt;
+hi CompTitle		color: Wheat; background: #3F3F3F; font-weight: bold; font-size: 18pt; 
+"hi CompTitle		color: #8B0000; background: #3F3F3F; font-weight: bold; font-size: 16pt;
+hi CompTitle>*		padding: 0 .5ex;
+hi CompItem		color: Wheat; font-weight: bold;
+hi CompItem>*		padding: 0 1.5ex;
+hi CompItem[selected]	color: Red; background: #3F3F3F;
+hi CompDesc		color: #808080; width: 50%;
+"hi Gradient		height: 1px; margin-bottom: -1px; margin-top: -1px;
+"hi GradientLeft		background-color: white;
+"hi GradientRight	background-color: white;
+
+"hi StatusLine		color: #ACBC90; background: #1E2320; font-weight: bold; font-size: 16pt;
+"hi StatusLine           color: Cornsilk; background: #373737; font-weight: bold; font-size: 16pt;
+"hi StatusLine           color: White; background: #8B0000; font-weight: bold; font-size: 16pt;
+hi StatusLine           color: MistyRose; background: #3F3F3F; font-weight: normal; font-size: 14pt;
+hi StatusLine           color: MistyRose; background: Black; font-weight: normal; font-size: 14pt;
+"hi StatusLine           color: #8B0000; background: #3F3F3F; font-weight: normal; font-size: 14pt;
+"hi StatusLine           color: #8B0000; background: Black; font-weight: bold; font-size: 13pt;
+"hi StatusLineBroken	color: #CC9393; background: #1E2320; font-weight: bold; font-size: 13pt;
+"hi StatusLineSecure	color: Wheat; background: #3F3F3F; font-weight: bold; font-size: 13pt;
+hi Hint			font-family: monospace; font-size: 10px; font-weight: bold; color: #385F38; background-color: #F8F893; border-color: ButtonShadow; border-width: 0px; border-style: solid; padding 0px 1px 0px 1px;
+

@@ -1,0 +1,20 @@
+javascript <<EOF
+    liberator.globalVariables.migrate_elements = [
+        {
+            // favicon of awesome bar
+            id:    'page-proxy-stack',
+            dest:  'liberator-statusline',
+            after: false,
+        },
+        {
+            // icon that show the existence of RSS and Atom on current page
+            id:    'feed-button',
+            dest:  'security-button',
+            after: true,
+        }];
+EOF
+
+" Set the height of output as half of the explorer
+"command! -nargs=+ lazy autocmd VimperatorEnter .* <args>
+"lazy .* js document.getElementById("liberator-multiline-output").parentNode.maxHeight=content.innerHeight/2 + "px"
+

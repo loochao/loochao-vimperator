@@ -1,0 +1,50 @@
+">==== PLUGINS ====<"
+"> Load plugins in ~/vimperator/plugin
+loadplugins
+
+">---- Buftabs ----<"
+">- Disable Buftabs
+"set buftabs=0"
+"set buftabs_maxlength=8
+"map <C-c>b :set invbuftabs<CR>
+
+">---- Copy ----<"
+javascript <<EOM
+liberator.globalVariables.copy_templates = [
+    { label: 'titleAndURL',    value: '%TITLE%\n%URL%' },
+    { label: 'title',          value: '%TITLE%', map: ',y' },
+    { label: 'anchor',         value: '<a href="%URL%">%TITLE%</a>' },
+    { label: 'selanchor',      value: '<a href="%URL%" title="%TITLE%">%SEL%</a>' },
+    { label: 'htmlblockquote', value: '<blockquote cite="%URL%" title="%TITLE%">%HTMLSEL%</blockquote>' },
+    { label: 'ASIN',   value: 'copy ASIN code from Amazon', custom: function(){return content.document.getElementById('ASIN').value;} },];
+EOM
+
+noremap cd :copy titleAndURL<CR>
+noremap ca :copy anchor<CR>
+noremap cs :copy selanchor<CR>
+noremap cb :copy htmlblockquote<CR>
+
+">---- Gmail Commando ----<"
+"Gmail Command
+"noremap gg :gmail (label:appinn OR label:againstgfw) AND is:unread<CR>
+"noremap gr :gmail label:reminder is:unread<CR>
+"noremap gt :gmail label:twitter is:unread<CR>
+"noremap gc :gmail is:chat AND -xmpptunnel -@appspot.com -bot@<CR>
+
+
+">---- Maine Coon ----<"
+"let g:maine_coon_default= "acmu"
+
+">---- Plugin Manager ----<"
+noremap ]M :pluginmanager<Space>
+
+">---- Stylish  ----<"
+noremap s :stylish toggle<CR>
+
+">---- Feedsomekey ----<"
+command! -nargs=+ lazy autocmd VimperatorEnter .* <args>
+"> Gmail
+lazy fmaps -u='^https?://mail\.google\.com/(mail|a)/' c / j k n m,p o u x s r a # l U I [ ] N z ? gi gs gt gd ga gc gb gk gl *a *n *r *u *s *t y e  
+"> Google Reader
+command! -nargs=+ lazyfmapsgooglereader lazy fmaps -urls='www\.google\.com/reader' -events=vkeypress <args>
+lazyfmapsgooglereader j k J K <Space> <S-Space> n m,p N P X O s D v gh ga gs gS gu gt gT gd gf gF gc ge gp r u 1 2 / a t T A o f

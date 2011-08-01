@@ -1,0 +1,370 @@
+">==== KEY ====<"
+"> noremap means 'no recursive map'
+"> map KeyA to KeyB
+"> cmap KeyA to KeyB (command line)
+"> imap KeyA to KeyB (insert mode)
+
+noremap I <C-z>
+
+noremap = zI
+
+noremap y Y
+noremap Y y
+
+">>Direction navigation
+noremap j 2j
+noremap k 2k
+noremap x h
+noremap v l
+noremap J <C-d>
+noremap K <C-u>
+"noremap J <PageDown>
+"noremap K <PageUp>
+
+">>Tab navigation
+">Left/Right tab
+noremap h gT
+noremap l gt
+noremap a gT
+noremap f gt
+noremap $ g$
+noremap ^ g^
+noremap <Left> <C-p>
+noremap <Right> <C-n>
+noremap <silent> <S-Left> :tabmove! -1<CR>
+noremap <silent> <S-Right> :tabmove! +1<CR>
+
+
+">>History navigation
+map H :back<CR>
+map L :forward<CR>
+map w :back<CR>
+map e :forward<CR>
+
+">>Page source
+noremap S :ubiquity<Space>
+
+">>Scrapbook capture page
+noremap C    :emenu ScrapBook.Capture Page<CR>
+
+">>Restart
+noremap R	:restart<CR>
+
+">>Show undo list
+noremap U :undo<space>
+
+">>Gmail
+noremap G :gmail<space>
+
+">>==== Normal Map Summary ====<<"
+"a left tab
+"A Add bookmark
+"b All buffer
+"B All buffer, but Seems slightly different from b (?) (OK)
+
+"c Copy prefix
+"noremap vd :copy titleAndURL<CR>
+"noremap va :copy anchor<CR>
+"noremap vs :copy selanchor<CR>
+"noremap vb :copy htmlblockquote<CR>
+
+"C Scrapbook Capture
+"d Delete buffer
+"D Delete buffer (OK)
+"e History forward
+"E (OK)
+"f right tab
+"F Follow hint in background
+
+"g Goto prefix
+"gb next buffer
+"gt Right buffer
+"gT Left buffer
+"gu Go up
+
+"G Gmail
+"h Goto left tab
+"H History back
+"i insert mode
+"I Pass through
+"j Scroll down
+"J Page down
+"k Scroll up
+"K Page up
+"l right tab
+"L History forward
+"m Mark register
+"M Qmarks
+"n Next pattern, during search
+"N prev pattern
+"o Open tab
+"O Open tab with the current address
+"p Paste the top stuff of clipboard and <CR>
+"P Paset the top of clipboard in a new tab
+"q record a macro
+"Q NULL
+"r right
+"R Restart
+"s stylish toggle -> lch-plugin.vimp
+"S Viewsource
+"t Open in a new tab
+"T Open in a new tab with the URL of the current pag
+"u Unclose tab
+"U Undolist
+
+"v forward
+
+"V Passthrough
+"w left
+"W Open dict cn, defined in Util.vimp
+"x History backward
+"X NULL
+"y Copy current selection
+"Y Copy current URL
+"z Zoom prefix
+"Z Quit prefix
+
+"F11 	Show tabline
+"C-F11	Hide tabline
+
+">>---- , map ----<<"
+
+">-Increase webpage...
+">02.html to 01.html
+"noremap ,j <C-x>
+">02.html to 03.html
+"noremap ,k <C-a>
+
+"let mapleader=","
+noremap ,cg	:set encoding=GB2312<CR>	
+noremap ,cu	:set encoding=UTF-8<CR>
+noremap gl      :qmarks<CR>
+noremap ,g      :set go+=m<CR>
+noremap ,G      :set go-=m<CR>
+noremap ,p	:dialog print<CR>
+noremap ,P	:dialog printsetup<CR>
+noremap ,r	:reload<CR>
+noremap ,R	:restart<CR>
+noremap ,s 	:so ~/.vimperatorrc<CR>
+noremap ,S	:dialog selectionsource<CR>
+
+">>---- ] map ----<<"
+noremap ]a      :dialog addons<CR>
+noremap ]A      :dialog about<CR>
+noremap ]b	:dialog bookmarks<CR>
+noremap ]c	:dialog cleardata<CR>
+noremap ]C	:dialog cookies<CR>
+"noremap [c	:dialog customizetoolbar<CR>
+
+"noremap ]      :dialog console<CR>
+noremap ]d      :dialog downloads<CR>
+noremap ]D 	:dialog<SPACE> 
+noremap ]h	:dialog history<CR>
+noremap ]m 	:set go=mb<CR>:set stal=2<CR>
+"]M pluginmanager -> lch-plugin.vimp
+noremap ]n 	:set go=<CR>:set stal=2<CR> "null
+noremap ]p	:dialog pageinfo<CR>
+noremap ]P	:dialog preferences<CR>
+noremap ]t 	:set go=mT<CR>:set stal=2<CR>
+noremap ]s	:sidebar<SPACE>
+noremap ]S	:emenu ScrapBook.ScrapBook<CR>
+"noremap ]S	:dialog	searchengines<CR>
+
+">>---- Emacs-style keybinding ----<<"
+">>M-x enters command mode
+noremap <A-x> :
+
+">>Emacs navigation in command line and insert mode
+cmap <C-n> <Tab>
+cmap <C-p> <S-Tab>
+cmap <C-f> <Right>
+cmap <C-b> <Left>
+cmap <C-j> <CR>
+noremap <C-j> <CR>
+inoremap <C-j> <CR>
+inoremap <C-n> <Down>
+inoremap <C-p> <Up>
+inoremap <C-f> <Right>
+inoremap <C-b> <Left>
+
+">>Use C-f and C-b for tab browsing
+noremap <C-f> <C-n>
+noremap <C-b> <C-p>
+
+">>Use C-a and C-e to jump to first/last tab
+"noremap <C-a> g0
+"noremap <C-e> g$
+"
+">>Or use them to go to the absolute left/right of the document
+"noremap <C-a> 0
+"noremap <C-e> $
+
+">>Use C-p and C-n for up/down
+noremap <C-n> 5j
+noremap <C-p> 5k
+
+">>Use C-v and M-v for jump scrolling
+"noremap <C-v> <C-d>
+"noremap <A-v> <C-u>
+
+">>Goto the top of the document with M-<
+noremap <A-<> gg
+
+">>Goto the end of the document with M->
+noremap <A->> G
+
+">>Use C-s and C-r for searching (n/N for next/prev as in less)
+noremap <C-s> /
+noremap <C-r> ?
+
+">>Copy the current URL to the clipboard with M-w
+noremap <A-w> y
+
+">>Copy selected text to the clipboard with C-w 
+noremap <C-w> Y
+
+">>Paste the current clipboard selection to a new buffer with C-y
+noremap <C-y> P
+
+">>Use current URL as a start for a new location with C-x C-v
+noremap <C-x><C-v> O
+
+">>C-g as cancel (C-q is stop)
+cmap <C-g> <Esc>
+imap <C-g> <Esc>
+noremap <C-g> <Esc>
+
+">>Avoid Find dialog when canceling a started command, C-x C-g
+noremap <C-x><C-g> <Esc>
+
+">>Kill the buffer with C-x k
+noremap <C-x>k d
+
+">>Undo close tab with C-_ (also with C-Shift-t, as C-t is new tab)
+noremap <C-_> u
+
+">>Exit and save the session with C-x C-c
+noremap <C-x><C-c> ZZ
+
+">>Buffer lists with C-x b and C-x C-b
+noremap <C-x>b b
+noremap <C-x><C-b> B
+
+">>Open a link in a new tab with C-x t
+">>Open a link in the current tab with C-x l
+noremap <C-x>t :t<SPACE>
+noremap <C-x>l :o<SPACE>
+
+">>Back with Backspace as well
+map <BS> H
+
+">>Use C-h i to start help
+"noremap <C-h>i :help<CR>
+
+">>Set a mark at the cursor with C-x r m
+noremap <C-x>rm m
+
+">>Jump to the mark in the current buffer with C-x r b
+noremap <C-x>rb '
+
+">>Record a key sequence into a macro with C-x (
+noremap <C-x>( q
+
+">>Play a macro with C-x e
+noremap <C-x>e @
+
+">>C-v was pass-next, remap to bind with default keys
+noremap <C-q> <C-v>
+
+">>C-x C-f starts the "Open File">>dialog (C-x C-s is Save)
+map <C-x><C-f> <C-q><C-o>
+
+">>===
+">>M-Up/Dn toggles the toolbar and scrollbars
+map <A-Down> :set go+=brT<CR>
+map <A-Up> :set go-=brT<CR>
+
+">>Focus last used input field with C-z i
+map <C-z>i gi
+
+">>Add a bookmark with C-z a (dialog)
+map <C-z>a <C-v><C-d>
+
+">>Bookmarks search, and search by tag
+map <C-z>q :bmarks<SPACE>
+map <C-z>w :bmarks -tags=
+
+">>View source with C-z g, and
+map <C-z>g gf
+
+">>Open picture location with C-z p
+map <C-z>p ;i
+
+">>Open context menu with C-z m
+map <C-z>m ;c
+
+">>... in an editor with C-z e
+map <C-z>e gF
+
+">>Open home directory with C-z f
+map <C-z>f ~
+
+">>Go to home page with C-z h
+map <C-z>h gh
+
+">>Go to parent directory with C-z u
+map <C-z>u gu
+
+">>Go to the root of the website with C-z C-u
+map <C-z><C-u> gU
+
+">>Restart with C-z C-r
+map <C-z><C-r> :restart<CR>
+
+">>Tab moving helpers
+map <A-m> :tabmove<SPACE>
+map <A-Left> :tabmove! -1<CR>
+map <A-Right> :tabmove! +1<CR>
+
+">>----Use windows style CPX----<<"
+noremap <C-a> <C-v><C-a>
+cnoremap <C-a> <C-v><C-a>
+inoremap <C-a> <C-v><C-a>
+
+noremap <C-c> <C-v><C-c>
+cnoremap <C-c> <C-v><C-c>
+inoremap <C-c> <C-v><C-c>
+
+noremap <C-l> <C-v><C-l>
+
+noremap <C-w> <C-v><C-w>
+cnoremap <C-w> <C-v><C-w>
+inoremap <C-w> <C-v><C-w>
+
+noremap <C-d> <C-v><C-d>
+
+">---- Ctrl Map ----<"
+"C-a Select all
+"C-d add current page to delicious
+"C-l openpage dialog
+"C-w Close tab
+"C-x Emacs Prefix
+"C-z Emacs Prefix
+
+"C-up All ffx menu, toobars...
+"C-down Vimperator minimum settings
+
+">-Pass through
+noremap V <C-v>
+
+noremap <C-v> <C-v><C-v>
+inoremap <C-v> <C-v><C-v>
+cnoremap <C-v> <C-v><C-v>
+
+
+">----Prev & Next Page----<"
+noremap } ]]
+noremap { [[
+
+
+
