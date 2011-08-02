@@ -1,0 +1,8 @@
+source ~/vimperator/lch-plugin.vimp
+source ~/vimperator/lch-init.vimp
+source ~/vimperator/lch-key.vimp
+source ~/vimperator/lch-util.vimp
+source ~/vimperator/lch-ui.vimp
+
+echo "VIMPERATOR INITIALIZED"
+
