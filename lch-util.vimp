@@ -9,6 +9,19 @@ command! yesimg set! permissions.default.image=1
 command! nojs set! javascript.enabled=false
 command! yesjs set! javascript.enabled=true
 
+
+map <silent> <F11> :js toggle_bottombar()<CR>
+
+:js << EOF
+function toggle_bottombar() {
+    var bb = document.getElementById('liberator-bottombar');
+    if (!bb)
+        return;
+    bb.style.height = (bb.style.height == '') ? '0px' : '';
+    bb.style.overflow = (bb.style.height == '') ? '' : 'hidden';
+    }
+EOF
+
 js <<EOF
 // Toggle Tool bar
 liberator.globalVariables['sx_gopt'] = 'T'

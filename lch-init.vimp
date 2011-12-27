@@ -1,6 +1,9 @@
 ">==== INIT ====<"
 cd ~
 
+set! browser.tabs.closeButtons=2
+
+
 ">Window title
 set titlestring=Firefox
 
@@ -13,6 +16,8 @@ set history=10000
 
 ">Show pattern matches as you type
 set incsearch
+
+set status=input,location,history,tabcount,position
 
 ">Hilight previous search pattern matches
 set hlsearch
